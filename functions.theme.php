@@ -29,4 +29,17 @@
 //add_action('init', 'add_custom_post_types');
 
 
+/** 
+ * 
+ * @param string $string
+ * @param type $amount
+ * @return string
+ */
+function shorten_string($string, $amount) {
+    if (strlen($string) > $amount) {
+        $string = trim(substr($string, 0, $amount)) . "...";
+    }
+    return $string;
+}
+
 ?>

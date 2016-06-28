@@ -1,5 +1,4 @@
 <?php
-
 require 'header.php';
 
 //content
@@ -16,7 +15,7 @@ if (have_posts()) : while (have_posts()) : the_post();
             "meta_description" => preg_replace('/\s+/', ' ', $shortContent),
             "meta_title" => get_the_title() . ' - ' . get_bloginfo('name')
         );
-
+        
         $page["encoded_permalink"] = urlencode($page["permalink"]);
         $page["encoded_title"] = urlencode($page["title"]);
         $page["encoded_summary"] = urlencode($page["meta_description"]);
@@ -24,7 +23,6 @@ if (have_posts()) : while (have_posts()) : the_post();
         $smarty->assign('page', $page);
     endwhile;
 endif;
-
 
 //Create aliasses for translations
 if (file_exists(get_theme_root() . '/smartytheme/php/' . $post->post_name . '.php')) {
@@ -34,5 +32,5 @@ if (file_exists(get_theme_root() . '/smartytheme/php/' . $post->post_name . '.ph
 if (file_exists(get_theme_root() . '/smartytheme/templates/' . $post->post_name . '.tpl')) {
     $smarty->display($post->post_name . '.tpl');
 } else {
-    $smarty->display('page.tpl');
+    $smarty->display('index.tpl');
 }

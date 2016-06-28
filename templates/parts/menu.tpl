@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{$site_url}"><img src="{$wp_path}/img/logo.png"></a>
+            <a class="navbar-brand" href="{$site_url}">{$page['site_name']}</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse navbar-right">
             <ul class="nav navbar-nav">
