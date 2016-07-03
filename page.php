@@ -17,7 +17,7 @@ if (have_posts()) : while (have_posts()) : the_post();
             "content" => apply_filters('the_content', $post->post_content),
             "meta_description" => preg_replace('/\s+/', ' ', $shortContent),
             "meta_title" => get_the_title() . ' - ' . get_bloginfo('name'),
-            "featured_image" => ""
+            "featured_image" => false
         );
         
         if (has_post_thumbnail($post->ID)){
