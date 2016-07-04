@@ -8,8 +8,8 @@ echo "Author: "
 read author
 echo "Author email: "
 read authoremail
-echo "Author website: "
-read authoremail
+echo "Website of author: "
+read authorwebsite
 
 # CREATE MISSING DIRECTORIES
 echo "------------------------------------------------------------"
@@ -43,14 +43,14 @@ echo "Install NPM packages"
 echo "------------------------------------------------------------"
 
 echo '{
-  "name": $websitename,
+  "name": "'$websitename'",
   "version": "1.0.0",
-  "description": $websitedescription,
+  "description": "'$websitedescription'",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": $author "<"$authoremail">",
+  "author": "'$author' <'$authoremail'>",
   "license": "ISC",
   "dependencies": {
   }
@@ -77,14 +77,14 @@ echo "------------------------------------------------------------"
 echo "Install bower packages"
 echo "------------------------------------------------------------"
 echo '{
-  "name": $websitename,
+  "name": "'$websitename'",
   "authors": [
-    $author "<"$authoremail">"
+    "'$author' <'$authoremail'>"
   ],
-  "description": "",
+  "description": "'$websitedescription'",
   "main": "",
   "license": "MIT",
-  "homepage": $authorwebsite,
+  "homepage": "'$authorwebsite'",
   "private": true,
   "ignore": [
     "**/.*",
