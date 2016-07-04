@@ -41,7 +41,7 @@ if (file_exists(get_theme_root() . '/smartytheme/php/' . $post->post_name . '.ph
 if (file_exists(get_theme_root() . '/smartytheme/templates/' . $post->post_name . '.tpl')) {
     $smarty->display($post->post_name . '.tpl');
 } else {
-    $smarty->display('index.tpl');
+    $smarty->display('page.tpl');
 }
 
 ?>
