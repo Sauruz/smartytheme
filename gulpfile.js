@@ -52,7 +52,13 @@ gulp.task('css', function () {
     var mergedStream = merge(scssStream, cssStream)
             .pipe(concat('styles.css'))
             .pipe(minify())
-            .pipe(gulp.dest('dist/css'));
+            .pipe(gulp.dest('dist/css'))
+            .pipe(notify({
+                'title': 'SASS',
+                'message': 'Sass compiled and compressed',
+                'icon': 'gulp_img/sass.png',
+                'sound': true
+            }));
 });
 
 gulp.task('compress', function () {
@@ -73,7 +79,14 @@ gulp.task('compress', function () {
                     .pipe(rename('uglify.js'))
                     .pipe(uglify())
                     .pipe(gulp.dest('dist/js'))
-                    );
+                    )
+            .pipe(notify({
+                'title': 'Javascript',
+                'message': 'Javascript compiled and compressed',
+                'icon': 'gulp_img/js.png',
+                'sound': true
+            }));
+    ;
 });
 
 gulp.task('fonts', function () {
@@ -82,14 +95,26 @@ gulp.task('fonts', function () {
         'bower_components/font-awesome/fonts/*'
     ])
             .pipe(flatten())
-            .pipe(gulp.dest('dist/fonts'));
+            .pipe(gulp.dest('dist/fonts'))
+            .pipe(notify({
+                'title': 'Fonts',
+                'message': 'Fonts copied',
+                'icon': 'gulp_img/fonts.png',
+                'sound': true
+            }));
 });
 
 gulp.task('img', function () {
     return gulp.src([
         'src/img/*'
     ])
-            .pipe(gulp.dest('dist/img'));
+            .pipe(gulp.dest('dist/img'))
+            .pipe(notify({
+                'title': 'Images',
+                'message': 'Images copied',
+                'icon': 'gulp_img/images.png',
+                'sound': true
+            }));
 });
 
 gulp.task('watch', function () {
