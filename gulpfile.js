@@ -229,4 +229,4 @@ gulp.task('watch', function () {
     gulp.watch(paths.sass, ['css']);
 });
 
-gulp.task('default', ['css', 'compress', 'fonts', 'img']);
+gulp.task('default', ['css', 'compress', 'fonts', 'img', 'generate-favicon']);

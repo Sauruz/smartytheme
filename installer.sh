@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo "Name website: "
+echo "Name package (no spaces, no capitals): "
 read websitename
-echo "Description website: "
+echo "Description package: "
 read websitedescription
 echo "Author: "
 read author
