@@ -37,6 +37,11 @@ var onError = function (err) {
     this.emit('end');
 };
 
+/**
+ * ######################################################################
+ * SASS
+ * ######################################################################
+ */
 gulp.task('css', function () {
     var scssStream = gulp.src(['./src/scss/**/*.scss'])
             .pipe(plumber({errorHandler: onError}))
@@ -60,6 +65,12 @@ gulp.task('css', function () {
                 'sound': true
             }));
 });
+
+/**
+ * ######################################################################
+ * JAVASCRIPT
+ * ######################################################################
+ */
 
 gulp.task('compress', function () {
 
@@ -89,6 +100,12 @@ gulp.task('compress', function () {
     ;
 });
 
+/**
+ * ######################################################################
+ * FONTS
+ * ######################################################################
+ */
+
 gulp.task('fonts', function () {
     return gulp.src([
         'bower_components/bootstrap/dist/fonts/*',
@@ -104,6 +121,12 @@ gulp.task('fonts', function () {
             }));
 });
 
+/**
+ * ######################################################################
+ * IMAGES
+ * ######################################################################
+ */
+
 gulp.task('img', function () {
     return gulp.src([
         'src/img/*'
@@ -116,6 +139,90 @@ gulp.task('img', function () {
                 'sound': true
             }));
 });
+
+/**
+ * ######################################################################
+ * FAVICONS
+ * ######################################################################
+ */
+
+var realFavicon = require('gulp-real-favicon');
+var fs = require('fs');
+
+// File where the favicon markups are stored
+var FAVICON_DATA_FILE = 'faviconData.json';
+var packageJson = JSON.parse(fs.readFileSync('package.json'));
+
+// Generate the icons. This task takes a few seconds to complete.
+// You should run it at least once to create the icons. Then,
+// you should run it whenever RealFaviconGenerator updates its
+// package (see the check-for-favicon-update task below).
+gulp.task('generate-favicon', function (done) {
+    realFavicon.generateFavicon({
+        masterPicture: 'src/favicon-original-260x260.png',
+        dest: 'dist/img/favicons',
+        iconsPath: '/',
+        design: {
+            ios: {
+                pictureAspect: 'noChange',
+                assets: {
+                    ios6AndPriorIcons: false,
+                    ios7AndLaterIcons: false,
+                    precomposedIcons: false,
+                    declareOnlyDefaultIcon: true
+                }
+            },
+            desktopBrowser: {},
+            windows: {
+                pictureAspect: 'noChange',
+                backgroundColor: '#da532c',
+                onConflict: 'override',
+                assets: {
+                    windows80Ie10Tile: false,
+                    windows10Ie11EdgeTiles: {
+                        small: false,
+                        medium: true,
+                        big: false,
+                        rectangle: false
+                    }
+                }
+            },
+            androidChrome: {
+                pictureAspect: 'noChange',
+                themeColor: '#ffffff',
+                manifest: {
+                    name: packageJson['name'],
+                    display: 'standalone',
+                    orientation: 'notSet',
+                    onConflict: 'override',
+                    declared: true
+                },
+                assets: {
+                    legacyIcon: false,
+                    lowResolutionIcons: false
+                }
+            },
+            safariPinnedTab: {
+                pictureAspect: 'silhouette',
+                themeColor: '#5bbad5'
+            }
+        },
+        settings: {
+            scalingAlgorithm: 'Mitchell',
+            errorOnImageTooSmall: false
+        },
+        markupFile: FAVICON_DATA_FILE
+    }, function () {
+        done();
+    });
+});
+
+
+/**
+ * ######################################################################
+ * WATCH
+ * ######################################################################
+ */
 
 gulp.task('watch', function () {
     gulp.watch(paths.scripts, ['compress']);
