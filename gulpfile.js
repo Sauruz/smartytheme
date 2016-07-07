@@ -109,7 +109,8 @@ gulp.task('compress', function () {
 gulp.task('fonts', function () {
     return gulp.src([
         'bower_components/bootstrap/dist/fonts/*',
-        'bower_components/font-awesome/fonts/*'
+        'bower_components/font-awesome/fonts/*',
+        'src/fonts/*'
     ])
             .pipe(flatten())
             .pipe(gulp.dest('dist/fonts'))
