@@ -7,11 +7,14 @@
 
 @import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "bower_components/font-awesome/scss/font-awesome.scss";
+@import "bower_components/bourbon/app/assets/stylesheets/bourbon";
 @import "bower_components/hover/scss/hover.scss";
 
 //########################################################
 // ASSETS
 //########################################################
 @import "assets/bootstrap-same-height";
+@import "assets/navbar";
+@import "assets/contactform";
 
 @import "main.scss";

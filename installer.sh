@@ -103,6 +103,8 @@ bower install font-awesome --save
 bower install bootstrap-sass --save
 bower install angular --save
 bower install Hover --save
+bower install bourbon --save
+
 # bower install datatables.net --save
 # bower install datatables.net-bs --save
 # bower install ckeditor --save
