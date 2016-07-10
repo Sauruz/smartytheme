@@ -29,7 +29,7 @@ if (!isset($pagingArr[$currentPageId])) {
     $currentPageId = 1;
 }
 $pagingArr[$currentPageId]['active'] = "active";
-$offset = $currentPageId - 1;
+$offset = ($currentPageId - 1) * $posts_per_page;
 
 $args = array(
     'posts_per_page' => $posts_per_page,
