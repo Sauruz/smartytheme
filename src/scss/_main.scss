@@ -6,3 +6,15 @@ html, body {
 body {
     padding-top: $navbar-height;
 }
+
+/* Extra Small */
+@media(max-width:$screen-xs-max){}
+
+/* Small */
+@media(min-width:$screen-sm-min) and (max-width:$screen-md-min){}
+
+/* Medium */
+@media(min-width:$screen-md-min) and (max-width:$screen-lg-min){}
+
+/* Large */
+@media(min-width:$screen-lg-min){}
