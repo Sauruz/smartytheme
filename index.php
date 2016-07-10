@@ -4,8 +4,10 @@
 
 require 'header.php';
 
+
 $count_posts = wp_count_posts();
 $published_posts = $count_posts->publish;
+$published_posts = 45;
 $offset = 0;
 $posts_per_page = 5;
 $pages = ceil($published_posts / 5);
@@ -57,7 +59,7 @@ foreach ($posts_array as $k => $v) {
 $smarty->assign('posts', $posts_array);
 $smarty->assign('paging', $pagingArr);
 
-$postsPageId = get_option('page_for_posts');
+$postsPageId = get_option( 'page_for_posts' );
 $postsPage = get_post($postsPageId);
 
 
@@ -67,7 +69,7 @@ $page = array(
     "permalink" => get_permalink($postsPageId),
     "post_name" => $postsPage->post_name,
     "title" => $postsPage->post_title,
-    "content" => apply_filters('the_content', $post->post_content),
+    "content" => "",
     "meta_description" => "Posts overview",
     "meta_title" => $postsPage->post_title . ' - ' . get_bloginfo('name'),
     "featured_image" => false
@@ -76,6 +78,7 @@ $page = array(
 $page["encoded_permalink"] = urlencode($page["permalink"]);
 $page["encoded_title"] = urlencode($page["title"]);
 $page["encoded_summary"] = urlencode($page["meta_description"]);
+
 
 $smarty->assign('page', $page);
 

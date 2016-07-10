@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3 text-center">
                 {foreach from=$paging key=k item=v}
-                        <a href="{$permalink}?page={$k}" class="paging-item {$v['active']}">
+                        <a href="{$page['permalink']}?page={$k}" class="paging-item {$v['active']}">
                             <span class="fa-stack fa-fw fa-lg text-center">
                                 <i class="fa fa-stack-2x"></i>
                                 {$k}
