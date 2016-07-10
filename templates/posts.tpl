@@ -17,21 +17,12 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3 text-center">
                 {foreach from=$paging key=k item=v}
-                    {if $v['active'] === 'active'}
-                        <a href="{$permalink}?page={$k}">
-                            <span class="fa-stack fa-lg text-center">
-                                <i class="fa fa-circle fa-stack-2x"></i>
+                        <a href="{$permalink}?page={$k}" class="paging-item {$v['active']}">
+                            <span class="fa-stack fa-fw fa-lg text-center">
+                                <i class="fa fa-stack-2x"></i>
                                 {$k}
                             </span>
                         </a>
-                    {else}
-                        <a href="{$permalink}?page={$k}">
-                            <span class="fa-stack fa-lg text-center">
-                                <i class="fa fa-circle-o fa-stack-2x"></i>
-                                {$k}
-                            </span>
-                        </a>
-                    {/if}
                 {/foreach}
             </div>
         </div>
