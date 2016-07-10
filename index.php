@@ -1,47 +1,83 @@
 <?php
-/**
- * Template Name: page
-*/
+
+//this page is used for blogposts
+
 require 'header.php';
 
-//content
-if (have_posts()) : while (have_posts()) : the_post();
+$count_posts = wp_count_posts();
+$published_posts = $count_posts->publish;
+$offset = 0;
+$posts_per_page = 5;
+$pages = ceil($published_posts / 5);
 
-        $shortContent = shorten_string(strip_tags($post->post_content), 200);
-        $page = array(
-            "site_name" => get_bloginfo('name'),
-            "site_description" => get_bloginfo('description'),
-            "permalink" => get_permalink($post->ID),
-            "post_name" => $post->post_name,
-            "title" => get_the_title(),
-            "content" => apply_filters('the_content', $post->post_content),
-            "meta_description" => preg_replace('/\s+/', ' ', $shortContent),
-            "meta_title" => get_the_title() . ' - ' . get_bloginfo('name'),
-            "featured_image" => false
-        );
-        
-        if (has_post_thumbnail($post->ID)){
-            $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' );
-            $page["featured_image"] = $image[0];
-        }
-
-        $page["encoded_permalink"] = urlencode($page["permalink"]);
-        $page["encoded_title"] = urlencode($page["title"]);
-        $page["encoded_summary"] = urlencode($page["meta_description"]);
-
-        $smarty->assign('page', $page);
-    endwhile;
-endif;
-
-//Create aliasses for translations
-if (file_exists(get_theme_root() . '/smartytheme/php/' . $post->post_name . '.php')) {
-    include('php/' . $post->post_name . '.php');
+$counter = 1;
+$pagingArr = array();
+while ($counter <= $pages) {
+    $pagingArr[$counter] = array("active" => "");
+    $counter++;
 }
 
-if (file_exists(get_theme_root() . '/smartytheme/templates/' . $post->post_name . '.tpl')) {
-    $smarty->display($post->post_name . '.tpl');
+if (isset($_GET['page'])) {
+    $currentPageId = intval($_GET['page']);
 } else {
-    $smarty->display('page.tpl');
+    $currentPageId = 1;
 }
 
+if (!isset($pagingArr[$currentPageId])) {
+    $currentPageId = 1;
+}
+$pagingArr[$currentPageId]['active'] = "active";
+$offset = $currentPageId - 1;
+
+$args = array(
+    'posts_per_page' => $posts_per_page,
+    'offset' => $offset,
+    'category' => '',
+    'category_name' => '',
+    'orderby' => 'date',
+    'order' => 'DESC',
+    'include' => '',
+    'exclude' => '',
+    'meta_key' => '',
+    'meta_value' => '',
+    'post_type' => 'post',
+    'post_mime_type' => '',
+    'post_parent' => '',
+    'author' => '',
+    'author_name' => '',
+    'post_status' => 'publish',
+    'suppress_filters' => true
+);
+$posts_array = get_posts($args);
+foreach ($posts_array as $k => $v) {
+    $posts_array[$k]->dutch_post_date = date("d-m-Y", strtotime($v->post_date));
+    $posts_array[$k]->dutch_post_time = date("H:i", strtotime($v->post_date));
+}
+
+$smarty->assign('posts', $posts_array);
+$smarty->assign('paging', $pagingArr);
+
+$postsPageId = get_option('page_for_posts');
+$postsPage = get_post($postsPageId);
+
+
+$page = array(
+    "site_name" => get_bloginfo('name'),
+    "site_description" => get_bloginfo('description'),
+    "permalink" => get_permalink($postsPageId),
+    "post_name" => $postsPage->post_name,
+    "title" => $postsPage->post_title,
+    "content" => apply_filters('the_content', $post->post_content),
+    "meta_description" => "Posts overview",
+    "meta_title" => $postsPage->post_title . ' - ' . get_bloginfo('name'),
+    "featured_image" => false
+);
+
+$page["encoded_permalink"] = urlencode($page["permalink"]);
+$page["encoded_title"] = urlencode($page["title"]);
+$page["encoded_summary"] = urlencode($page["meta_description"]);
+
+$smarty->assign('page', $page);
+
+$smarty->display('posts.tpl');
 ?>
