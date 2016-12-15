@@ -25,6 +25,16 @@
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
-        <link rel="shortcut icon" href="{$wp_path}/favicon.png" type="image/x-icon" />
+        <link class="favicon-element" rel="mask-icon" href="{$wp_path}/dist/img/favicons/safari-pinned-tab.svg" color="#4CAF4E">
+        <link class="favicon-element" rel="apple-touch-icon" sizes="180x180" href="{$wp_path}/dist/img/favicons/apple-touch-icon.png">
+        <link class="favicon-element" rel="icon" type="image/png" href="{$wp_path}/dist/img/favicons/favicon-32x32.png" sizes="32x32">
+        <link class="favicon-element" rel="icon" type="image/png" href="{$wp_path}/dist/img/favicons/favicon-16x16.png" sizes="16x16">
+        <link class="favicon-element" rel="manifest" href="{$wp_path}/dist/img/favicons/manifest.json">
+        <link class="favicon-element" rel="mask-icon" href="{$wp_path}/dist/img/favicons/safari-pinned-tab.svg" color="#4CAF4E">
+        <link class="favicon-element" rel="shortcut icon" href="{$wp_path}/dist/img/favicons/favicon.ico">
+        <meta class="favicon-element" name="msapplication-TileColor" content="#4CAF4E">
+        <meta class="favicon-element" name="msapplication-TileImage" content="{$wp_path}/dist/img/favicons/mstile-144x144.png">
+        <meta class="favicon-element" name="msapplication-config" content="{$wp_path}/dist/img/favicons/browserconfig.xml">
+        <meta class="favicon-element" name="theme-color" content="#4CAF4E">
     </head>
     <body>
