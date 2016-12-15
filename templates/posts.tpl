@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             {foreach from=$posts key=k item=v}
-                <h3>{$v->post_title}</h3>
+                <h3><a href="{get_permalink($v->ID)}">{$v->post_title}</a></h3>
                 {$v->dutch_post_date}<br>
                 {$v->post_content}<br>
                 <hr>
