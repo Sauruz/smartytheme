@@ -7,7 +7,6 @@ require 'header.php';
 
 $count_posts = wp_count_posts();
 $published_posts = $count_posts->publish;
-$published_posts = 45;
 $offset = 0;
 $posts_per_page = 5;
 $pages = ceil($published_posts / 5);
@@ -52,14 +51,17 @@ $args = array(
 );
 $posts_array = get_posts($args);
 foreach ($posts_array as $k => $v) {
-    $posts_array[$k]->dutch_post_date = date("d-m-Y", strtotime($v->post_date));
+    $posts_array[$k]->short_content = get_field("short_content", $v->ID);
+    $posts_array[$k]->post_day = date("d", strtotime($v->post_date));
+    $posts_array[$k]->post_month = date("M", strtotime($v->post_date));
     $posts_array[$k]->dutch_post_time = date("H:i", strtotime($v->post_date));
+    $posts_array[$k]->permalink = get_permalink($v->ID);
 }
 
 $smarty->assign('posts', $posts_array);
 $smarty->assign('paging', $pagingArr);
 
-$postsPageId = get_option( 'page_for_posts' );
+$postsPageId = get_option('page_for_posts');
 $postsPage = get_post($postsPageId);
 
 

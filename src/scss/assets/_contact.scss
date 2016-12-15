@@ -1,0 +1,25 @@
+.contactform-checkbox-radio {
+    input[type="radio"], input[type="checkbox"] {
+        margin-right: 10px;
+    }
+}
+
+.screen-reader-response {
+    display: none;
+}
+
+.wpcf7-mail-sent-ok{
+    background-color: $brand-success;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.wpcf7-validation-errors, .wpcf7-not-valid-tip , .wpcf7-spam-blocked{
+    background-color: $brand-danger;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    font-weight: bold;
+}
