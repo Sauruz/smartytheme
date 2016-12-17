@@ -17,9 +17,20 @@ var runSequence = require('run-sequence');
 var plumber = require('gulp-plumber');
 var notify = require("gulp-notify");
 
+//images
+var path = require('path');
+var image = require('gulp-image');
+var changed = require('gulp-changed');
+
 var paths = {
-    scripts: ['src/js/**/*.js'],
-    sass: './src/scss/**/*.scss'
+    src: {
+        scripts: ['src/js/**/*.js'],
+        sass: './src/scss/**/*.scss',
+        img: 'src/img/**/*.{png,jpg,jpeg,gif,svg}'
+    },
+    dest: {
+        img: 'dist/img'
+    }
 };
 
 function handleError(err) {
@@ -129,16 +140,21 @@ gulp.task('fonts', function () {
  */
 
 gulp.task('img', function () {
-    return gulp.src([
-        'src/img/*'
-    ])
-            .pipe(gulp.dest('dist/img'))
-            .pipe(notify({
-                'title': 'Images',
-                'message': 'Images copied',
-                'icon': 'gulp_img/images.png',
-                'sound': true
-            }));
+    return gulp.src(paths.src.img)
+
+        //Changed is only processing changed files
+        .pipe(changed(paths.dest.img))
+
+        //Image is compressing the image size
+        .pipe(image())
+        .pipe(gulp.dest(paths.dest.img))
+
+        .pipe(notify({
+            'title': 'Images',
+            'message': 'Image copied',
+            'icon': 'gulp_img/images.png',
+            'sound': true
+        }));
 });
 
 /**
@@ -226,8 +242,20 @@ gulp.task('generate-favicon', function (done) {
  */
 
 gulp.task('watch', function () {
-    gulp.watch(paths.scripts, ['compress']);
-    gulp.watch(paths.sass, ['css']);
+    gulp.watch(paths.src.scripts, ['compress']);
+    gulp.watch(paths.src.sass, ['css']);
+
+    //Watch images and delete images from dist if image is deleted from src
+    var watcher = gulp.watch(paths.src.img, ['img']);
+    watcher.on('change', function (event) {
+        if (event.type === 'deleted') {
+            var fileNameBase = path.basename(event.path, '.ts');
+            del([paths.dest.img + '/' + fileNameBase])
+                .then(function (paths) {
+                    console.log("deleted files: " + paths.join('\n'));
+                });
+        }
+    });
 });
 
 gulp.task('default', ['css', 'compress', 'fonts', 'img', 'generate-favicon']);

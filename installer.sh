@@ -70,6 +70,10 @@ npm install gulp-uglify --save
 npm install merge-stream --save
 npm install run-sequence --save
 npm install gulp-real-favicon --save
+npm install path --save
+npm install gulp-image --save
+npm install gulp-changed --save
+
 
 
 # BOWER PAKACKAGES
