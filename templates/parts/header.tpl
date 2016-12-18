@@ -5,12 +5,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="favicon.png">
-        <meta name="author" content="Indaad www.indaad.nl" />
-        <meta name="robots" content="index, follow" />
         <meta name="revisit-after" content="1 month" />
-        <title>{$page['site_name']} - {$page['title']}</title>
+        <title>{$page['title']} - {$page['site_name']}</title>
         <meta name="description" content="{$page['meta_description']}"/>
         <meta name="keywords" content="{if isset($tags)}{$tags}{/if}"/>
+        <meta name="author" content="Guido Rus">
+        <meta name="copyright" content="{date('Y')} {$page['site_name']} ©">
+        <meta name="robots" content="All">
         <link rel="canonical" href="{$page['permalink']}" />
         <meta property="og:locale" content="nl_NL" />
         <meta property="og:type" content="website" />
