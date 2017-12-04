@@ -4,17 +4,22 @@ html, body {
 }
 
 body {
-    padding-top: $navbar-height;
+    padding-top: 100px;
 }
 
-/* Extra Small */
-@media(max-width:$screen-xs-max){}
+@include media-breakpoint-down(xs) {  }
+@include media-breakpoint-down(sm) {  }
+@include media-breakpoint-down(md) {  }
+@include media-breakpoint-down(lg) {  }
 
-/* Small */
-@media(min-width:$screen-sm-min) and (max-width:$screen-md-min){}
+@include media-breakpoint-up(xs) {  }
+@include media-breakpoint-up(sm) {  }
+@include media-breakpoint-up(md) {  }
+@include media-breakpoint-up(lg) {  }
+@include media-breakpoint-up(xl) { }
 
-/* Medium */
-@media(min-width:$screen-md-min) and (max-width:$screen-lg-min){}
-
-/* Large */
-@media(min-width:$screen-lg-min){}
+@include media-breakpoint-only(xs) {  }
+@include media-breakpoint-only(sm) {  }
+@include media-breakpoint-only(md) {  }
+@include media-breakpoint-only(lg) {  }
+@include media-breakpoint-only(xl) {  }

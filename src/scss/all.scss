@@ -2,13 +2,14 @@
 @import "config/hover";
 
 //########################################################
-// BOWER LIBS
+// NPM LIBS
 //########################################################
 
-@import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
-@import "bower_components/font-awesome/scss/font-awesome.scss";
-@import "bower_components/bourbon/app/assets/stylesheets/bourbon";
-@import "bower_components/hover/scss/hover.scss";
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "node_modules/font-awesome/scss/font-awesome";
+@import "node_modules/bourbon/app/assets/stylesheets/bourbon";
+@import "node_modules/hover.css/scss/hover.scss";
+@import "node_modules/hint.css/src/hint.scss";
 
 //########################################################
 // ASSETS

@@ -57,66 +57,30 @@ echo '{
 }' > package.json
 
 npm install
-npm install del --save
-npm install gulp --save
-npm install gulp-concat --save
-npm install gulp-flatten --save
-npm install gulp-clean-css --save
-npm install gulp-notify --save
-npm install gulp-plumber --save
-npm install gulp-rename --save
-npm install gulp-sass --save
-npm install gulp-uglify --save
-npm install merge-stream --save
-npm install run-sequence --save
-npm install gulp-real-favicon --save
-npm install path --save
-npm install gulp-image --save
-npm install gulp-changed --save
+npm install del --save-dev
+npm install gulp --save-dev
+npm install gulp-concat --save-dev
+npm install gulp-flatten --save-dev
+npm install gulp-clean-css --save-dev
+npm install gulp-notify --save-dev
+npm install gulp-plumber --save-dev
+npm install gulp-rename --save-dev
+npm install gulp-sass --save-dev
+npm install gulp-uglify --save-dev
+npm install merge-stream --save-dev
+npm install run-sequence --save-dev
+npm install gulp-real-favicon --save-dev
+npm install path --save-dev
+npm install gulp-image --save-dev
+npm install gulp-changed --save-dev
 
+npm install bootstrap@4.0.0-alpha.6 --save
+npm install font-awesome --save
+npm install bourbon --save
+npm install hint.css --save
+npm install hover.css --save
+npm install sweetalert2 --save
 
-
-# BOWER PAKACKAGES
-echo "------------------------------------------------------------"
-echo "Install bower packages"
-echo "------------------------------------------------------------"
-echo '{
-  "name": "'$websitename'",
-  "authors": [
-    "'$author' <'$authoremail'>"
-  ],
-  "description": "'$websitedescription'",
-  "main": "",
-  "license": "MIT",
-  "homepage": "'$authorwebsite'",
-  "private": true,
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-  	"jquery": "2.2.4"
-  }
-}' > bower.json
-
-bower install
-bower install font-awesome --save
-bower install bootstrap-sass --save
-bower install angular --save
-bower install Hover --save
-bower install bourbon --save
-
-# bower install datatables.net --save
-# bower install datatables.net-bs --save
-# bower install ckeditor --save
-# bower install sweetalert2 --save
-# bower install flatpickr-calendar --save
-# bower install hint.css --save
-# bower install magic --save
-# bower install fullpage.js --save
 
 # RUN GULP
 echo "------------------------------------------------------------"

@@ -1,29 +1,26 @@
 .vertical-align {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
   flex-direction: row;
 }
 
 .vertical-align > [class^="col-"],
 .vertical-align > [class*=" col-"] {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   //justify-content: center; /* Optional, to align inner items
   //                            horizontally inside the column */
 }
 
-/**
- *  Do NOT include this part into your stylesheet.
- *  "flex: 1" or "flex-grow: 1" is added to make the inner div
- *  - Which is also a flex-item - take up all the horizontal space
- *  available space inside the flex container (.col-* elements)
- */
-.vertical-align > [class^="col-"] > div,
-.vertical-align > [class*=" col-"] > div {
-  /* flex: 1; */
-  flex-grow: 1;
-}
-
-@media (max-width: $screen-xs-max) { 
+@include media-breakpoint-down(sm) {
   .vertical-align {
     display: block;
   }
