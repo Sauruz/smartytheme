@@ -1,14 +1,9 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-toggleable-md fixed-top navbar-inverse bg-inverse">
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{$site_url}">{$page['site_name']}</a>
-        </div>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="{$site_url}">{$page['site_name']}</a>
         <div id="navbar" class="collapse navbar-collapse navbar-right">
             <ul class="nav navbar-nav">
                 {foreach from=$menu key=k item=v}
@@ -20,9 +15,9 @@
                             <ul class="dropdown-menu">
                                 {foreach from=$v->subpages key=k2 item=v2}
                                     <li><a href="{$v2->url}" class="{$v->active}">{$v2->title}</a></li>
-                                    {/foreach}     
+                                {/foreach}
                             </ul>
-                        {/if} 
+                        {/if}
                     </li>
                 {/foreach}
             </ul>
