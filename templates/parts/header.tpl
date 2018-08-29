@@ -20,7 +20,7 @@
         <meta property="og:url" content="{$page['permalink']}" />
         <meta property="og:site_name" content="{$page['site_name']}" />
         <meta property="og:image" content="{$page['oggimage']}"/>
-        <link href="{$wp_path}/dist/css/styles.css" rel="stylesheet">
+        <link href="{$wp_path}/dist/css/styles.css?v=init" rel="stylesheet">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
