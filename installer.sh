@@ -73,13 +73,14 @@ npm install gulp-real-favicon --save-dev
 npm install path --save-dev
 npm install gulp-image --save-dev
 npm install gulp-changed --save-dev
+npm install gulp-replace --save-dev
 
-npm install bootstrap@4.0.0-alpha.6 --save
+npm install bootstrap@latest --save
 npm install font-awesome --save
-npm install bourbon --save
-npm install hint.css --save
-npm install hover.css --save
-npm install sweetalert2 --save
+# npm install bourbon --save
+# npm install hint.css --save
+# npm install hover.css --save
+# npm install sweetalert2 --save
 
 
 # RUN GULP

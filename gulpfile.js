@@ -16,6 +16,7 @@ var del = require('del');
 var runSequence = require('run-sequence');
 var plumber = require('gulp-plumber');
 var notify = require("gulp-notify");
+var replace = require('gulp-replace');
 
 //images
 var path = require('path');
@@ -83,15 +84,12 @@ gulp.task('css', function () {
  * ######################################################################
  */
 
-gulp.task('compress', function () {
+gulp.task('js', function () {
 
     return gulp.src([
         'bower_components/jquery/dist/jquery.min.js',
         'bower_components/angular/angular.min.js',
         'bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
-//         'bower_components/datatables.net/js/jquery.dataTables.min.js',
-//         'bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js',
-//         'bower_components/sweetalert/dist/sweetalert-dev.js',
         'src/js/main.js',
         'src/js/**/*'
     ])
@@ -234,6 +232,23 @@ gulp.task('generate-favicon', function (done) {
     });
 });
 
+/**
+ * ######################################################################
+ * ADD VERSION NUMBERS TO header and footer
+ * ######################################################################
+ */
+var version = Math.round(+new Date()/1000);
+gulp.task('addVersionNumberHeader', function(){
+    return gulp.src(['templates/parts/header.tpl'])
+        .pipe(replace(/styles.css\?v=[\s\S]*?\"/, 'styles.css?v=' + version + '"'))
+        .pipe(gulp.dest('templates/parts/'));
+});
+gulp.task('addVersionNumberFooter', function(){
+    return gulp
+        .src(['templates/parts/footer.tpl'])
+        .pipe(replace(/app.js\?v=[\s\S]*?\"/, 'app.js?v=' + version + '"'))
+        .pipe(gulp.dest('templates/parts/'));
+});
 
 /**
  * ######################################################################
@@ -242,8 +257,8 @@ gulp.task('generate-favicon', function (done) {
  */
 
 gulp.task('watch', function () {
-    gulp.watch(paths.src.scripts, ['compress']);
-    gulp.watch(paths.src.sass, ['css']);
+    gulp.watch(paths.src.scripts, ['js', 'addVersionNumberFooter']);
+    gulp.watch(paths.src.sass, ['css', 'addVersionNumberHeader']);
 
     //Watch images and delete images from dist if image is deleted from src
     var watcher = gulp.watch(paths.src.img, ['img']);
@@ -258,4 +273,4 @@ gulp.task('watch', function () {
     });
 });
 
-gulp.task('default', ['css', 'compress', 'fonts', 'img', 'generate-favicon']);
+gulp.task('default', ['css', 'js', 'fonts', 'img', 'generate-favicon', 'addVersionNumberHeader', 'addVersionNumberFooter']);
