@@ -4,12 +4,6 @@ echo "Name package (no spaces, no capitals): "
 read websitename
 echo "Description package: "
 read websitedescription
-echo "Author: "
-read author
-echo "Author email: "
-read authoremail
-echo "Website of author: "
-read authorwebsite
 
 # CREATE MISSING DIRECTORIES
 echo "------------------------------------------------------------"
@@ -50,7 +44,7 @@ echo '{
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "'$author' <'$authoremail'>",
+  "author": "Guido Rus <g.rus@de-rus.nl>",
   "license": "ISC",
   "dependencies": {
   }
