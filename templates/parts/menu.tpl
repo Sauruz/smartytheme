@@ -1,26 +1,30 @@
-<nav class="navbar navbar-toggleable-md fixed-top navbar-inverse bg-inverse">
-    <div class="container">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="{$site_url}">{$page['site_name']}</a>
-        <div id="navbar" class="collapse navbar-collapse navbar-right">
-            <ul class="nav navbar-nav">
-                {foreach from=$menu key=k item=v}
-                    <li>
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{$site_url}">{$page['site_name']}</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    {foreach from=$menu key=k item=v}
                         {if empty($v->subpages)}
-                            <a href="{$v->url}" class="{$v->active}">{$v->title}</a>
+                            <li class="nav-item {$v->active}">
+                                <a class="nav-link" href="{$v->url}">{$v->title}</a>
+                            </li>
                         {else}
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="">{$v->title} <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                {foreach from=$v->subpages key=k2 item=v2}
-                                    <li><a href="{$v2->url}" class="{$v->active}">{$v2->title}</a></li>
-                                {/foreach}
-                            </ul>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="{$v->url}" id="dropdown{$k}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{$v->title}</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown{$k}">
+                                    {foreach from=$v->subpages key=k2 item=v2}
+                                        <a class="dropdown-item {$v->active}" href="{$v2->url}">{$v2->title}</a>
+                                    {/foreach}
+                                </div>
+                            </li>
                         {/if}
-                    </li>
-                {/foreach}
-            </ul>
-        </div><!--/.nav-collapse -->
-    </div>
-</nav>
+                    {/foreach}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

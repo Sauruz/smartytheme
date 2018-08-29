@@ -61,8 +61,7 @@ gulp.task('css', function () {
             .pipe(concat('scss-files.scss'));
 
     var cssStream = gulp.src([
-//         'bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css',
-//         'bower_components/sweetalert/dist/sweetalert.css',
+
     ])
             .pipe(concat('css-files.css'));
 
@@ -87,9 +86,8 @@ gulp.task('css', function () {
 gulp.task('js', function () {
 
     return gulp.src([
-        'bower_components/jquery/dist/jquery.min.js',
-        'bower_components/angular/angular.min.js',
-        'bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
+        'node_modules/bootstrap/dist/js/bootstrap.min.js',
+        'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
         'src/js/main.js',
         'src/js/**/*'
     ])
