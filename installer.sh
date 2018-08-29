@@ -76,6 +76,9 @@ npm install font-awesome --save
 # npm install hover.css --save
 # npm install sweetalert2 --save
 
+#COPY CONFIG FILES
+cp node_modules/bootstrap/scss/_variables.scss src/scss/config/_bootstrap.scss
+
 
 # RUN GULP
 echo "------------------------------------------------------------"
