@@ -238,13 +238,13 @@ gulp.task('generate-favicon', function (done) {
 var version = Math.round(+new Date()/1000);
 gulp.task('addVersionNumberHeader', function(){
     return gulp.src(['templates/parts/header.tpl'])
-        .pipe(replace(/styles.css\?v=[\s\S]*?\"/, 'styles.css?v=' + version + '"'))
+        .pipe(replace(/\?v=[\s\S]*?\"/g, '?v=' + version + '"'))
         .pipe(gulp.dest('templates/parts/'));
 });
 gulp.task('addVersionNumberFooter', function(){
     return gulp
         .src(['templates/parts/footer.tpl'])
-        .pipe(replace(/app.js\?v=[\s\S]*?\"/, 'app.js?v=' + version + '"'))
+        .pipe(replace(/\?v=[\s\S]*?\"/g, '?v=' + version + '"'))
         .pipe(gulp.dest('templates/parts/'));
 });
 
