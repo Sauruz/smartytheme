@@ -80,6 +80,17 @@ function shorten_string($string, $amount) {
 }
 
 /**
+ * Prints content in plain text then dies
+ * @param type $content
+ */
+function print_p($content)
+{
+    header('Content-Type: text/plain');
+    print_r($content);
+    die;
+}
+
+/**
  * 
  * @param type $smarty
  * @param type $post
